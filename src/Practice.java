@@ -11,11 +11,11 @@ public class Practice {
      * @return the sum of the odd numbers in the array
      */
     public static int oddSum(int[] nums) {
-        if(nums.equals(null) || nums.length < 1){
+        if(nums == null || nums.length < 1){
             return 0;
         }
         int sum = 0;
-        for(int i =0; i<= nums.length; i++){
+        for(int i =0; i<= nums.length-1; i++){
             if(nums[i]%2 != 0){
                 sum += nums[i];
             }
@@ -44,14 +44,12 @@ public class Practice {
                 shortest = word;
             }
             if(word.length() == shortest.length()){
-                if(word.compareTo(shortest)>0){
-                    return shortest;
+                if(word.compareTo(shortest) <0){
+                    shortest = word;
                 }
             }
-
         }
-
-        return null;
+        return shortest;
     }
 
     /**
