@@ -257,23 +257,24 @@ public class Practice {
      * @return the count of vertices with outdegree 0
      */
     public static int sinkCount(Vertex<Integer> start) {
-        
-        return sinkCount(start, 0);
+        return sinkCount(start, 0, new HashSet<>());
     }
 
-    public static int sinkCount(Vertex<Integer> current, int sinks){
-        if(current == null){
-          
-        }else{
-            if(current.neighbors.size() == 0){
-                sinks++;
+    public static int sinkCount(Vertex<Integer> current, int sinks, HashSet<Vertex<Integer>> visited){
+
+        if(current != null){
+            if(!visited.contains(current)){
+                visited.add(current);
+                if(current.neighbors.size() == 0){
+                    sinks++;
+                }
+                for(Vertex<Integer> neighbor: current.neighbors){
+                    sinks = sinkCount(neighbor, sinks, visited);
+                }
             }
-                
-            for(Vertex<Integer> neighbor: current.neighbors){
-                sinks = sinkCount(neighbor, sinks);
-            }
+            
+            
         }
-        
         return sinks;
     }
 }
