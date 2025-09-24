@@ -257,6 +257,23 @@ public class Practice {
      * @return the count of vertices with outdegree 0
      */
     public static int sinkCount(Vertex<Integer> start) {
-        return 0;
+        
+        return sinkCount(start, 0);
+    }
+
+    public static int sinkCount(Vertex<Integer> current, int sinks){
+        if(current == null){
+          
+        }else{
+            if(current.neighbors.size() == 0){
+                sinks++;
+            }
+                
+            for(Vertex<Integer> neighbor: current.neighbors){
+                sinks = sinkCount(neighbor, sinks);
+            }
+        }
+        
+        return sinks;
     }
 }
