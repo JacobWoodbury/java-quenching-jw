@@ -232,9 +232,22 @@ public class Practice {
      * @return the sum of all the vertices
      */
     public static int graphSum(Vertex<Integer> start) {
-        return 0;
+        HashSet<Vertex<Integer>> visited = new HashSet<>();
+        return graphSum(start, visited, 0);
+       
     }
 
+    public static int graphSum(Vertex<Integer> current, HashSet<Vertex<Integer>> visited, int sum){
+        if(current == null || visited.contains(current)) return sum;
+        if (!visited.contains(current)) {
+            visited.add(current);
+            sum += current.data;
+            for(Vertex<Integer> neighbor: current.neighbors){
+                sum = graphSum(neighbor, visited, sum);
+            }
+        }
+        return sum;
+    }
     /**
      * Returns the count of vertices in a graph that have an outdegree of 0.
      * 
