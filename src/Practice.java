@@ -198,7 +198,28 @@ public class Practice {
      * @return true if the sums are equal, false otherwise
      */
     public static boolean sumMatch(BinaryTreeNode<Integer> root, ListNode<Integer> head) {
+        int rootSum = sumRoot(root, 0);
+        int headSum = sumHead(head, 0);
+        System.out.println(rootSum + " " + headSum);
+        if(rootSum == headSum) return true;
         return false;
+       
+        
+    }
+    public static int sumRoot(BinaryTreeNode<Integer> temp, int sum){
+        if(temp == null) return sum;
+        sum += temp.data;
+        sum = sumRoot(temp.left, sum);
+        sum = sumRoot(temp.right, sum);
+        
+        return sum;
+    }
+    public static int sumHead(ListNode<Integer> head, int sum){
+        if(head == null) return sum;
+        sum += head.data;
+        sum = sumHead(head.next, sum);
+        
+        return sum;
     }
 
     /**
